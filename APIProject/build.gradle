@@ -1,0 +1,29 @@
+println "build api project"
+
+bootWar {
+	mainClassName = 'kr.chunlima.api.Execute'
+}
+
+def versions = [
+	'springfox': '2.8.0'
+]
+
+dependencies {
+	// 종속 프로젝트 설정
+	implementation project(":CommonProject")
+	
+	// tomcat연동
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	
+	// springboot (dependency-management-plugin이 의존성 관리)
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	
+	// log
+	implementation 'ch.qos.logback:logback-classic'
+	
+	// swagger
+	implementation group: 'io.springfox', name: 'springfox-swagger2', version: "${versions.springfox}"
+	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: "${versions.springfox}"
+		
+	implementation 'org.springframework.boot:spring-boot-starter-aop'
+}

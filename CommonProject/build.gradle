@@ -1,0 +1,15 @@
+println 'build core project'
+
+def versions = [
+	//"logback": "1.2.3",
+]
+
+bootWar.enabled=false
+
+dependencies {
+	implementation 'org.slf4j:jcl-over-slf4j'
+	implementation 'ch.qos.logback:logback-classic'
+	
+	
+	// JPA 추가
+}

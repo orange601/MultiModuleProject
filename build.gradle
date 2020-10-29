@@ -1,0 +1,58 @@
+/*
+	- Root 프로젝트 역할
+		1. Gradle 설정
+		2. common 프로젝트와 구분 주의
+		3. 모든 프로젝트에서 사용할만한 공통 설정이나 Task 등이 들어간다.
+*/
+
+// Gradle 빌드 스크립트 자체를 위한 의존성이나 변수, Task, Plugin 등을 지정
+buildscript {
+	ext {
+		// 현 전산 springboot와 같은 버전을 맞춤
+     	springBootVersion = "2.2.1.RELEASE"
+    }
+    
+    repositories {
+		mavenCentral()
+	}
+    
+    // gradle의 스크립트에서 바로 외부 라이브러리를 참조해야 할 경우에 사용하는 방법
+    dependencies {
+    	// dependency(의존성)관리와 애플리케이션 패키징을 도와주는 도구 ( jar, war 패키징 )
+    	classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+    	// https://mvnrepository.com/artifact/io.spring.gradle/dependency-management-plugin
+		classpath group: 'io.spring.gradle', name: 'dependency-management-plugin', version: '1.0.10.RELEASE'
+    }
+
+}
+
+// 모든 프로젝트 ( 모듈, 종속을 위함 )
+allprojects {
+}
+
+// 하위 프로젝트
+subprojects {
+	apply plugin: "java"
+	apply plugin: "org.springframework.boot"
+	apply plugin: "war"
+	// 현재 사용하는 스프링 부트 버전에 맞춰 dependencies의 버전을 자동적으로 설정한다. ( 원하는 버전으로 커스텀마이징도 가능하다. ) 
+	apply plugin: "io.spring.dependency-management"
+	
+	// Java 소스의 Java 언어 레벨
+	sourceCompatibility = "1.8"
+	// Java 클래스의 Java 언어 레벨
+	targetCompatibility = "1.8"
+	
+	// 소스 인코딩 지정
+	[compileJava, compileTestJava]*.options*.encoding = "UTF-8"
+	
+	repositories {
+		mavenCentral()
+	}
+	
+	dependencies {
+		compileOnly 'org.projectlombok:lombok'
+		// 프로젝트를 export할 때 롬북에서의 제공되는 에노테이션이 전부 포함되지 않음
+		annotationProcessor 'org.projectlombok:lombok'
+	}
+}

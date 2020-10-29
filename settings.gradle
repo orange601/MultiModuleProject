@@ -1,0 +1,3 @@
+rootProject.name = 'MultiModuleProject'
+include 'APIProject'
+include 'CommonProject'
