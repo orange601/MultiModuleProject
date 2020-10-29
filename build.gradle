@@ -35,7 +35,7 @@ subprojects {
 	apply plugin: "java"
 	apply plugin: "org.springframework.boot"
 	apply plugin: "war"
-	// 현재 사용하는 스프링 부트 버전에 맞춰 dependencies의 버전을 자동적으로 설정한다. ( 원하는 버전으로 커스텀마이징도 가능하다. ) 
+	// 현재 사용하는 스프링 부트 버전에 맞춰 dependencies의 버전을 자동적으로 설정한다. (원하는 버전으로 커스텀마이징도 가능하다.) 
 	apply plugin: "io.spring.dependency-management"
 	
 	// Java 소스의 Java 언어 레벨
