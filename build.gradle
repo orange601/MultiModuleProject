@@ -52,7 +52,7 @@ subprojects {
 	
 	dependencies {
 		compileOnly 'org.projectlombok:lombok'
-		// 프로젝트를 export할 때 롬북에서의 제공되는 에노테이션이 전부 포함되지 않음
+		// 프로젝트를 export할 때 롬북에서의 제공되는 어노테이션이 전부 포함되지 않음
 		annotationProcessor 'org.projectlombok:lombok'
 	}
 }
